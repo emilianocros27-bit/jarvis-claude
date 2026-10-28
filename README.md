@@ -9,7 +9,7 @@ Abre tu agente de IA en una carpeta vacía y pega el texto de tu herramienta. To
 **Claude Code**
 
 ```text
-Clona https://github.com/emilianocros27-bit/jarvis.git, lee su CLAUDE.md y sigue
+Clona https://github.com/emilianocros27-bit/jarvis-claude.git, lee su CLAUDE.md y sigue
 sus instrucciones: crea un entorno virtual, instala requirements.txt y arranca
 python server.py. Avísame antes de cambiar algo del sistema y dime cuando esté
 listo en http://localhost:4700. No toques credentials/ ni token.json.
@@ -18,7 +18,7 @@ listo en http://localhost:4700. No toques credentials/ ni token.json.
 **Codex (OpenAI)**
 
 ```text
-Clona https://github.com/emilianocros27-bit/jarvis.git, lee su AGENTS.md y sigue
+Clona https://github.com/emilianocros27-bit/jarvis-claude.git, lee su AGENTS.md y sigue
 sus instrucciones: crea un entorno virtual, instala requirements.txt y arranca
 python server.py. Avísame antes de cambiar algo del sistema y dime cuando esté
 listo en http://localhost:4700. No toques credentials/ ni token.json.
@@ -27,7 +27,7 @@ listo en http://localhost:4700. No toques credentials/ ni token.json.
 **Gemini CLI, Cursor, Copilot, Windsurf u otro agente**
 
 ```text
-Clona https://github.com/emilianocros27-bit/jarvis.git, lee su AGENTS.md y sigue
+Clona https://github.com/emilianocros27-bit/jarvis-claude.git, lee su AGENTS.md y sigue
 sus instrucciones: crea un entorno virtual, instala requirements.txt y arranca
 python server.py. Avísame antes de cambiar algo del sistema y dime cuando esté
 listo en http://localhost:4700. No toques credentials/ ni token.json.
@@ -44,8 +44,8 @@ listo en http://localhost:4700. No toques credentials/ ni token.json.
 ## Instalación rápida
 
 ```bash
-git clone https://github.com/emilianocros27-bit/jarvis.git
-cd jarvis
+git clone https://github.com/emilianocros27-bit/jarvis-claude.git
+cd jarvis-claude
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
