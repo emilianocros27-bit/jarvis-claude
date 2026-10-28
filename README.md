@@ -12,7 +12,7 @@
 
 # Jarvis
 
-Asistente personal web para explorar notas, proyectos y memoria en una interfaz tipo "knowledge galaxy". Incluye chat con voz, proyectos aislados (workspaces) y, opcionalmente, integraciones con Google Classroom, Google Calendar y Firebase.
+Asistente personal web para explorar notas, proyectos y memoria en una interfaz tipo "knowledge galaxy". Incluye chat con voz, proyectos aislados (workspaces) y, opcionalmente, integraciones con Google Classroom y Google Calendar.
 
 ## Cómo se usa
 
@@ -65,7 +65,7 @@ listo en http://localhost:4700. No toques credentials/ ni token.json.
 
 - Python 3.10 o superior
 - [Claude Code CLI](https://docs.claude.com/en/docs/claude-code) instalado y con sesión iniciada (`claude`). El chat ejecuta `claude -p` en tu máquina; sin la CLI el chat no responde.
-- Opcional: credenciales de Google y/o Firebase (ver abajo)
+- Opcional: credenciales de Google (ver abajo)
 
 ## Instalación rápida
 
@@ -96,10 +96,6 @@ Todo lo que es secreto vive en `credentials/` y `token.json`, ambos ignorados po
 
 Scopes: Classroom solo lectura; Calendar lectura y escritura.
 
-### Firebase (DUNK)
-
-`dunk_firebase.py` lee (solo lectura) la base Firestore del juego DUNK. Es específico de ese proyecto: si no lo usas, ignóralo. Si quieres adaptarlo a tu propio Firebase, descarga la clave de cuenta de servicio y guárdala como `credentials/dunk-firebase.json`.
-
 ### PIN para acciones destructivas
 
 Borrar un proyecto pide un PIN local. Se guarda hasheado (PBKDF2) en `credentials/pin.json`; el PIN en texto plano nunca se escribe en disco.
@@ -114,7 +110,6 @@ Borrar un proyecto pide un PIN local. Se guarda hasheado (PBKDF2) en `credential
 | `build.py` | Construye el grafo a partir de notas Markdown |
 | `google_auth.py`, `classroom.py`, `calendar_api.py` | Integraciones de Google |
 | `documents.py` | Genera recibos, cartas y reportes en PDF |
-| `dunk_firebase.py` | Lectura de Firestore (DUNK) |
 | `project_auth.py` | PIN local |
 
 ## Documentos generados
@@ -138,7 +133,7 @@ Limitaciones en hosting estándar:
 
 ## Seguridad
 
-No subas `credentials/` ni `token.json`. Si alguna vez se filtran, revoca las claves en Google Cloud / Firebase y genera nuevas.
+No subas `credentials/` ni `token.json`. Si alguna vez se filtran, revoca las claves en Google Cloud y genera nuevas.
 
 ## Licencia
 

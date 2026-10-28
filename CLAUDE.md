@@ -11,6 +11,6 @@ python server.py   # http://localhost:4700
 - El chat llama a `claude -p` (ver `ask_claude` en `server.py`): usa la sesión de Claude Code del usuario. Si `claude` no está en el PATH, avisa al usuario en vez de inventar una API key.
 - `workspaces/` se crea solo en el primer arranque y contiene datos personales (ignorado por git).
 - Nunca leas, imprimas ni subas `credentials/` ni `token.json`.
-- Google (Classroom/Calendar) y Firebase son opcionales; guía de credenciales en `README.md`.
+- Google (Classroom/Calendar) es opcional; guía de credenciales en `README.md`.
 - No hagas push ni cambies el remoto sin que el usuario lo pida.
 - `AGENTS.md` tiene el mismo contenido para Codex, Cursor, Gemini CLI y otros agentes; si cambias uno, actualiza el otro.
