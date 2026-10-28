@@ -2,6 +2,18 @@
 
 Asistente personal web para explorar notas, proyectos y memoria en una interfaz tipo "knowledge galaxy". Incluye chat con voz, proyectos aislados (workspaces) y, opcionalmente, integraciones con Google Classroom, Google Calendar y Firebase.
 
+## Instalar con un prompt (lo más fácil)
+
+Jarvis responde usando **tu propia sesión de Claude** (`claude -p`), así que funciona con tu plan sin API key ni configuración extra. Si ya usas [Claude Code](https://docs.claude.com/en/docs/claude-code), abre una carpeta vacía y pega esto:
+
+```text
+Clona https://github.com/emilianocros27-bit/jarvis.git, crea un entorno virtual,
+instala requirements.txt, arranca python server.py y dime cuando esté listo en
+http://localhost:4700. No toques credentials/ ni token.json.
+```
+
+Claude hace el resto. Las integraciones de Google/Firebase son opcionales; ver más abajo.
+
 ## Requisitos
 
 - Python 3.10 o superior
