@@ -27,7 +27,6 @@ import build
 import calendar_api
 import classroom
 import documents
-import dunk_firebase
 import entities
 import project_auth
 import workspaces
@@ -780,50 +779,6 @@ def build_document_error_prompt(kind, reason, memory_entries=None):
     return "\n".join(lines)
 
 
-def build_dunk_stats_prompt(stats, memory_entries=None):
-    lines = [BUTLER_PERSONA]
-    lines.extend(format_memory_section(memory_entries or []))
-    lines.append("")
-    lines.append(
-        "The user asked how their game DUNK's players are doing. Below is "
-        "REAL data pulled just now from Firestore: how many player "
-        "profiles were updated in the last 24 hours, each active player's "
-        "CURRENT save-state, and the top 5 scores overall for context. "
-        "There is no historical snapshot to diff against, so this is a "
-        "CURRENT STATE, never a 24h progress delta — do not claim any "
-        "specific amount of progress was 'gained' today, and if it isn't "
-        "already obvious, say plainly that this is today's snapshot, not "
-        "a change-over-time figure. Read it back in Spanish: the active "
-        "count, a sense of each active player's current state, and the "
-        "top scores. If the active count is 0, say so plainly and still "
-        "give the top scores for context. Witty in character, but keep "
-        "the actual numbers accurate — do not invent or round dishonestly."
-    )
-    lines.append("")
-    lines.append(f"JUGADORES ACTIVOS (perfil actualizado en las últimas 24h): {stats['active_count']}")
-    if stats["saves_summary"]:
-        lines.append("ESTADO ACTUAL DE JUGADORES ACTIVOS:")
-        for s in stats["saves_summary"]:
-            lines.append(f"- {s['username']}: {s['summary']}")
-    lines.append("TOP 5 PUNTAJES (histórico, no solo hoy):")
-    for i, s in enumerate(stats["top_scores"], 1):
-        lines.append(f"{i}. {s['username']}: {s['score']}")
-    return "\n".join(lines)
-
-
-def build_dunk_stats_error_prompt(reason, memory_entries=None):
-    lines = [BUTLER_PERSONA]
-    lines.extend(format_memory_section(memory_entries or []))
-    lines.append("")
-    lines.append(
-        f"The user asked about their game DUNK's player stats, but it "
-        f"could not be fetched from Firestore ({reason}). Explain this in "
-        "ONE witty in-character sentence, in Spanish — no raw error text, "
-        "no technical jargon."
-    )
-    return "\n".join(lines)
-
-
 def _new_urgent_alerts():
     """Returns a list of short Spanish fact-strings for items that just
     crossed into 'urgent' — a Classroom deadline within 24h, or a calendar
@@ -1472,8 +1427,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.handle_workspace_rename()
         elif self.path == "/documents/create":
             self.handle_documents_create()
-        elif self.path == "/dunk-stats":
-            self.handle_dunk_stats()
         elif self.path == "/briefing":
             self.handle_briefing()
         elif self.path == "/workspaces/delete":
@@ -2057,38 +2010,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.send_json(404, {"error": "unknown job_id"})
             return
         self.send_json(200, job)
-
-    def handle_dunk_stats(self):
-        try:
-            body = self.read_json_body()
-        except json.JSONDecodeError:
-            body = {}
-
-        question = (body.get("text") or "¿cómo van los jugadores de DUNK hoy?").strip()
-        memory_entries = recent_memory()
-
-        try:
-            stats = dunk_firebase.get_stats()
-        except dunk_firebase.DunkFirebaseError as e:
-            message = ask_claude(build_dunk_stats_error_prompt(str(e), memory_entries))
-            append_memory(question, message, "es")
-            self.send_json(200, {"ok": False, "message": message})
-            return
-        except Exception:
-            traceback.print_exc()
-            message = ask_claude(build_dunk_stats_error_prompt(
-                "an unexpected internal error occurred", memory_entries))
-            append_memory(question, message, "es")
-            self.send_json(200, {"ok": False, "message": message})
-            return
-
-        try:
-            message = ask_claude(build_dunk_stats_prompt(stats, memory_entries))
-            append_memory(question, message, "es")
-            self.send_json(200, {"ok": True, "message": message, "stats": stats})
-        except Exception:
-            traceback.print_exc()
-            self.send_json(500, {"error": "internal error building the response"})
 
     def handle_alerts_check(self):
         new_items = _new_urgent_alerts()

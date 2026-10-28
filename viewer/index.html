@@ -1943,7 +1943,6 @@
     const PROJECT_UPDATE_TRIGGER_RE = /^\s*proyecto\s+/i;
     const PROJECT_SUMMARY_TRIGGER_RE = /(c[oó]mo\s+van|resumen)[^.?!]{0,25}proyecto/i;
     const CLASSROOM_TRIGGER_RE = /tareas?\b.{0,25}\b(pendientes|classroom)\b|classroom\b.{0,25}\btareas?\b/i;
-    const DUNK_STATS_TRIGGER_RE = /(jugadores|estad[ií]sticas)\b.{0,20}\bdunk\b|dunk\b.{0,20}\b(jugadores|estad[ií]sticas)\b/i;
     const CALENDAR_QUERY_TRIGGER_RE = /qu[eé]\b.{0,15}\b(calendario|agendado)\b|calendario\b.{0,15}\bqu[eé]\b/i;
     // anchored + requires "para" so a real query like "¿qué tengo agendado?"
     // (caught above) never falls through and gets misread as a create command
@@ -2248,34 +2247,6 @@
         });
       }
       chatAnswer.classList.add('visible');
-    }
-
-    async function dunkStats(rawText) {
-      console.log('[dunk] fetching player stats:', JSON.stringify(rawText));
-      unlockAudio();
-      chatAnswer.classList.remove('visible');
-      setStatus('● revisando DUNK…', 'thinking');
-
-      try {
-        const res = await fetch('/dunk-stats', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text: rawText }),
-        });
-        const data = await res.json();
-
-        if (data.error) {
-          renderAnswer(`Error: ${data.error}`, []);
-          return;
-        }
-
-        renderAnswer(data.message, []);
-        speak(truncateForSpeech(data.message, 6, 800), 'es');
-      } catch (err) {
-        renderAnswer(`Error: ${err.message}`, []);
-      } finally {
-        setStatus(null, 'idle');
-      }
     }
 
     async function classroomAssignments(rawText) {
@@ -2603,10 +2574,6 @@
       }
       if (CLASSROOM_TRIGGER_RE.test(question)) {
         await classroomAssignments(question);
-        return;
-      }
-      if (DUNK_STATS_TRIGGER_RE.test(question)) {
-        await dunkStats(question);
         return;
       }
       if (CALENDAR_QUERY_TRIGGER_RE.test(question)) {
