@@ -1,6 +1,32 @@
+<p align="center">
+  <img src="assets/banner.svg" alt="Jarvis, tu asistente personal con IA" width="100%">
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/Claude_Code-CLI-D97757?logo=anthropic&logoColor=white" alt="Claude Code CLI">
+  <img src="https://img.shields.io/badge/Three.js-3D-000000?logo=threedotjs&logoColor=white" alt="Three.js">
+  <img src="https://img.shields.io/badge/Google-Classroom_%26_Calendar-4285F4?logo=google&logoColor=white" alt="Google Classroom y Calendar">
+  <img src="https://img.shields.io/badge/licencia-MIT-2563eb" alt="Licencia MIT">
+</p>
+
 # Jarvis
 
 Asistente personal web para explorar notas, proyectos y memoria en una interfaz tipo "knowledge galaxy". Incluye chat con voz, proyectos aislados (workspaces) y, opcionalmente, integraciones con Google Classroom, Google Calendar y Firebase.
+
+## Cómo se usa
+
+**Pregúntale con tu voz.** Pulsa el micrófono, habla, y Jarvis te responde en voz alta usando tu sesión de Claude.
+
+<p align="center"><img src="assets/demo-chat.svg" alt="Demo: chat con voz" width="100%"></p>
+
+**Convierte tus notas en una galaxia.** Crea un proyecto, Jarvis lee tus notas Markdown y las muestra conectadas en 3D.
+
+<p align="center"><img src="assets/demo-galaxia.svg" alt="Demo: galaxia de notas" width="100%"></p>
+
+**Agenda y documentos con una frase.** Crea eventos en Google Calendar y genera recibos, cartas o reportes en PDF.
+
+<p align="center"><img src="assets/demo-agenda.svg" alt="Demo: agenda y documentos" width="100%"></p>
 
 ## Instalar con un prompt (lo más fácil)
 
