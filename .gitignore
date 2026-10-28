@@ -15,5 +15,7 @@ credentials/
 
 # Node
 node_modules/
-workspaces/node-modules/
-workspaces/node-modules-2/
+
+# Personal data (notes, memory, projects) and generated graph
+workspaces/
+viewer/graph-data.js
