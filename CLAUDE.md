@@ -13,3 +13,4 @@ python server.py   # http://localhost:4700
 - Nunca leas, imprimas ni subas `credentials/` ni `token.json`.
 - Google (Classroom/Calendar) y Firebase son opcionales; guía de credenciales en `README.md`.
 - No hagas push ni cambies el remoto sin que el usuario lo pida.
+- `AGENTS.md` tiene el mismo contenido para Codex, Cursor, Gemini CLI y otros agentes; si cambias uno, actualiza el otro.

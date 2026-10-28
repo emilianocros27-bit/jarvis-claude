@@ -4,15 +4,36 @@ Asistente personal web para explorar notas, proyectos y memoria en una interfaz 
 
 ## Instalar con un prompt (lo más fácil)
 
-Jarvis responde usando **tu propia sesión de Claude** (`claude -p`), así que funciona con tu plan sin API key ni configuración extra. Si ya usas [Claude Code](https://docs.claude.com/en/docs/claude-code), abre una carpeta vacía y pega esto:
+Abre tu agente de IA en una carpeta vacía y pega el texto de tu herramienta. Todos hacen lo mismo: clonan, instalan y arrancan Jarvis en `http://localhost:4700`.
+
+**Claude Code**
 
 ```text
-Clona https://github.com/emilianocros27-bit/jarvis.git, crea un entorno virtual,
-instala requirements.txt, arranca python server.py y dime cuando esté listo en
-http://localhost:4700. No toques credentials/ ni token.json.
+Clona https://github.com/emilianocros27-bit/jarvis.git, lee su CLAUDE.md y sigue
+sus instrucciones: crea un entorno virtual, instala requirements.txt y arranca
+python server.py. Avísame antes de cambiar algo del sistema y dime cuando esté
+listo en http://localhost:4700. No toques credentials/ ni token.json.
 ```
 
-Claude hace el resto. Las integraciones de Google/Firebase son opcionales; ver más abajo.
+**Codex (OpenAI)**
+
+```text
+Clona https://github.com/emilianocros27-bit/jarvis.git, lee su AGENTS.md y sigue
+sus instrucciones: crea un entorno virtual, instala requirements.txt y arranca
+python server.py. Avísame antes de cambiar algo del sistema y dime cuando esté
+listo en http://localhost:4700. No toques credentials/ ni token.json.
+```
+
+**Gemini CLI, Cursor, Copilot, Windsurf u otro agente**
+
+```text
+Clona https://github.com/emilianocros27-bit/jarvis.git, lee su AGENTS.md y sigue
+sus instrucciones: crea un entorno virtual, instala requirements.txt y arranca
+python server.py. Avísame antes de cambiar algo del sistema y dime cuando esté
+listo en http://localhost:4700. No toques credentials/ ni token.json.
+```
+
+> **Importante:** instalar y abrir Jarvis funciona con cualquier agente, pero el **chat** responde llamando a la CLI de Claude (`claude -p`) con tu propia sesión y tu plan. Para usar el chat necesitas [Claude Code](https://docs.claude.com/en/docs/claude-code) instalado y con sesión iniciada, aunque hayas instalado Jarvis con otro agente.
 
 ## Requisitos
 
